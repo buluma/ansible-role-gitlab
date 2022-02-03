@@ -20,7 +20,7 @@ molecule:
       #  tag: "7"
       # - image: "enterpriselinux"
       #  tag: "latest"
-      - image: "docker-ubuntu2204-ansible"
+      - image: "docker-ubuntu2004-ansible"
         tag: "latest"
 
 galaxy:
