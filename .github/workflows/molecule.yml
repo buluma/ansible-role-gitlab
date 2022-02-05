@@ -7,18 +7,20 @@ name: Ansible Molecule
 
 on:
   push:
-    tags_ignore:
+    branches:
+      - '**'
+    tags-ignore:
       - '*'
   pull_request:
   schedule:
-    - cron: '13 4 1 * *'
+    - cron: '13 7 7 * *'
 
 jobs:
   lint:
     runs-on: ubuntu-20.04
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           path: "${{ github.repository }}"
       - name: molecule
@@ -33,15 +35,15 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          # - image: "enterpriselinux"
-          #  tag: "7"
-          # - image: "enterpriselinux"
-          #  tag: "latest"
-          - image: "docker-ubuntu2004-ansible"
+          - image: "enterpriselinux"
+            tag: "7"
+          - image: "enterpriselinux"
+            tag: "latest"
+          - image: "docker-ubuntu-systemd"
             tag: "latest"
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.4.0
         with:
           path: "${{ github.repository }}"
       - name: disable apparmor for mysql
