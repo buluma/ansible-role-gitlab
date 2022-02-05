@@ -16,13 +16,29 @@ molecule:
   retry: 1
   parallel:
     matrix:
-      # - image: "enterpriselinux"
-      #  tag: "7"
-      # - image: "enterpriselinux"
-      #  tag: "latest"
-      - image: "docker-ubuntu2004-ansible"
+      - image: "enterpriselinux"
+        tag: "7"
+      - image: "enterpriselinux"
+        tag: "latest"
+      - image: "docker-ubuntu-systemd"
+        tag: "latest"
+
+testing:
+  script:
+    - image=${image} tag=${tag} molecule test
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "testing"
+  retry: 1
+  parallel:
+    matrix:
+      - image: "enterpriselinux"
+        tag: "7"
+      - image: "enterpriselinux"
+        tag: "latest"
+      - image: "docker-ubuntu-systemd"
         tag: "latest"
 
 galaxy:
   script:
-    - ansible-galaxy role info ${CI_PROJECT_NAMESPACE}.gitlab
+    # - ansible-galaxy role info ${CI_PROJECT_NAMESPACE}.${CI_PROJECT_NAME}
+    - ansible-galaxy role info buluma.gitlab
