@@ -1,5 +1,5 @@
 ---
-image: "buluma/github-action-molecule:4.0.5"
+image: "buluma/github-action-molecule:4.0.6"
 
 services:
   - docker:dind
@@ -21,7 +21,7 @@ molecule:
       - image: "enterpriselinux"
         tag: "latest"
       - image: "docker-ubuntu-systemd"
-        tag: "latest"
+        tag: "focal"
 
 testing:
   script:
@@ -36,9 +36,36 @@ testing:
       - image: "enterpriselinux"
         tag: "latest"
       - image: "docker-ubuntu-systemd"
+        tag: "focal"
+
+role_testing:
+  script:
+    - image=${image} tag=${tag} ansible-galaxy install buluma.gitlab
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "testing"
+  retry: 1
+  parallel:
+    matrix:
+      - image: "enterpriselinux"
+        tag: "7"
+      - image: "enterpriselinux"
         tag: "latest"
+      - image: "docker-ubuntu-systemd"
+        tag: "focal"
 
 galaxy:
   script:
-    # - ansible-galaxy role info ${CI_PROJECT_NAMESPACE}.${CI_PROJECT_NAME}
     - ansible-galaxy role info buluma.gitlab
+
+role_testing_live:
+  script:
+    - image=${image} tag=${tag} ansible-galaxy install buluma.gitlab
+  retry: 1
+  parallel:
+    matrix:
+      - image: "enterpriselinux"
+        tag: "7"
+      - image: "enterpriselinux"
+        tag: "latest"
+      - image: "docker-ubuntu-systemd"
+        tag: "focal"
