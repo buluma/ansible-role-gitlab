@@ -14,8 +14,8 @@ lint: |
 driver:
   name: docker
 platforms:
-  - name: "gitlab-${image:-fedora}-${tag:-latest}${TOX_ENVNAME}"
-    image: "${namespace:-buluma}/${image:-fedora}:${tag:-latest}"
+  - name: "gitlab-${image:-ubuntu}-${tag:-focal}${TOX_ENVNAME}"
+    image: "${namespace:-buluma}/${image:-ubuntu}:${tag:-focal}"
     command: /sbin/init
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
