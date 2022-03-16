@@ -42,6 +42,8 @@ jobs:
             tag: "latest"
           - image: "docker-ubuntu-systemd"
             tag: "focal"
+          - image: "docker-ubuntu2004-ansible"
+            tag: "latest"
     steps:
       - name: checkout
         uses: actions/checkout@v3
