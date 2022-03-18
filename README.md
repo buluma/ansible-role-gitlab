@@ -18,7 +18,10 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
 
   roles:
     - role: buluma.gitlab
+      gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
+      gitlab_trusted_certs:
+        - isrgrootx1.pem # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -345,7 +348,7 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-gitlab_letsencrypt: no
+gitlab_letsencrypt: yes
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
 # gitlab_letsencrypt: no
@@ -354,17 +357,24 @@ gitlab_letsencrypt: no
 # gitlab_ssl_crt: some_file.crt
 # # If you'd like to use letsencrypt, use this scructure.
 # gitlab_letsencrypt: yes
-# gitlab_letsencrypt_contact_emails:
-#   - robert@meinit.nl
-# gitlab_letsencrypt_group: root
-# gitlab_letsencrypt_key_size: 2048
-# gitlab_letsencrypt_owner: root
-# gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
-# gitlab_letsencrypt_auto_renew: yes
-# gitlab_letsencrypt_auto_renew_hour: 0
-# gitlab_letsencrypt_auto_renew_minute: nil
-# gitlab_letsencrypt_auto_renew_day_of_month: nil
-# gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+gitlab_letsencrypt_contact_emails:
+  - bulumaknight@gmail.com
+gitlab_letsencrypt_group: root
+gitlab_letsencrypt_key_size: 2048
+gitlab_letsencrypt_owner: root
+gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
+gitlab_letsencrypt_auto_renew: yes
+gitlab_letsencrypt_auto_renew_hour: 0
+gitlab_letsencrypt_auto_renew_minute: nil
+gitlab_letsencrypt_auto_renew_day_of_month: nil
+gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+
+# In case you need to trust a (CA) certificate to access remote resources,
+# like an LDAP server, download the (CA) certificate, place it in the `files`
+# directory and refer to it in the below list.
+# gitlab_trusted_certs:
+#   - my-ca-1.crt
+#   - my-1.crt
 ```
 
 ## [Requirements](#requirements)
@@ -377,7 +387,7 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/buluma.bootstrap)|[![Build Status GitHub](https://github.com/buluma/buluma.bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/buluma.bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/buluma.bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/buluma.bootstrap)|
 
 ## [Context](#context)
 

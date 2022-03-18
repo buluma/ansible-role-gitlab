@@ -760,7 +760,7 @@
       when:
         - gitlab_letsencrypt is defined
 
-    - name: test if gitlab_letsencrypt no is set correctly
+    - name: test if gitlab_ssl_* are set correctly
       ansible.builtin.assert:
         that:
           - gitlab_ssl_key is defined
@@ -840,8 +840,7 @@
           - (gitlab_letsencrypt_auto_renew_hour is number and
              gitlab_letsencrypt_auto_renew_hour >= 0 and
              gitlab_letsencrypt_auto_renew_hour <= 24) or
-            (gitlab_letsencrypt_auto_renew_hour is string and
-             gitlab_letsencrypt_auto_renew_hour == "nil")
+            (gitlab_letsencrypt_auto_renew_hour is string)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -855,8 +854,7 @@
           - (gitlab_letsencrypt_auto_renew_minute is number and
              gitlab_letsencrypt_auto_renew_minute >= 0 and
              gitlab_letsencrypt_auto_renew_minute <= 59) or
-            (gitlab_letsencrypt_auto_renew_minute is string and
-             gitlab_letsencrypt_auto_renew_minute == "nil")
+            (gitlab_letsencrypt_auto_renew_minute is string)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -870,8 +868,7 @@
           - (gitlab_letsencrypt_auto_renew_day_of_month is number and
              gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
              gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
-            (gitlab_letsencrypt_auto_renew_day_of_month is string and
-             gitlab_letsencrypt_auto_renew_day_of_month == "nil")
+            (gitlab_letsencrypt_auto_renew_day_of_month is string)
         quiet: yes
       when:
         - gitlab_letsencrypt is defined
@@ -890,3 +887,11 @@
         - gitlab_letsencrypt_auto_renew
   when:
     - gitlab_configuration_file is not defined
+
+- name: test if gitlab_trusted_certs is set correctly
+  ansible.builtin.assert:
+    that:
+      - gitlab_trusted_certs is iterable
+    quiet: yes
+  when:
+    - gitlab_trusted_certs is defined
