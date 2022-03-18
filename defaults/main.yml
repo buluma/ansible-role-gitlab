@@ -322,8 +322,8 @@ gitlab_letsencrypt_owner: root
 gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
 gitlab_letsencrypt_auto_renew: yes
 gitlab_letsencrypt_auto_renew_hour: 0
-gitlab_letsencrypt_auto_renew_minute: nil
-gitlab_letsencrypt_auto_renew_day_of_month: nil
+gitlab_letsencrypt_auto_renew_minute: 0
+gitlab_letsencrypt_auto_renew_day_of_month: 1
 gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
 
 # In case you need to trust a (CA) certificate to access remote resources,
