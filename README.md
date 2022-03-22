@@ -365,8 +365,8 @@ gitlab_letsencrypt_owner: root
 gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
 gitlab_letsencrypt_auto_renew: yes
 gitlab_letsencrypt_auto_renew_hour: 0
-gitlab_letsencrypt_auto_renew_minute: nil
-gitlab_letsencrypt_auto_renew_day_of_month: nil
+gitlab_letsencrypt_auto_renew_minute: 3
+gitlab_letsencrypt_auto_renew_day_of_month: 3
 gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
 
 # In case you need to trust a (CA) certificate to access remote resources,
@@ -387,7 +387,7 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/buluma.bootstrap)|[![Build Status GitHub](https://github.com/buluma/buluma.bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/buluma.bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/buluma.bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/buluma.bootstrap)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
