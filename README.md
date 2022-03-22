@@ -21,7 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
-        - isrgrootx1.pem # A root certificate for letsencrypt.
+        - isrgrootx1.pem  # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -102,53 +102,53 @@ gitlab_default_projects_features_builds: yes
 gitlab_default_projects_features_container_registry: yes
 
 # LDAP settings.
-gitlab_rails_ldap_enabled: no
+gitlab_rails_ldap_enabled: yes
 gitlab_rails_prevent_ldap_sign_in: no
 # When `gitlab_rails_ldap_enabled` is set to `yes`, you need to define (at
 # least on) `gitlab_rails_ldap_servers`.
-# gitlab_rails_ldap_servers:
-#   - name: main
-#     label: LDAP
-#     host: _your_ldap_server
-#     port: 389
-#     uid: sAMAccountName
-#     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
-#     password: _the_password_of_the_bind_user
-#     encryption: plain
-#     verify_certificates: yes
-#     smartcard_auth: yes
-#     active_directory: yes
-#     allow_username_or_email_login: no
-#     lowercase_usernames: no
-#     block_auto_created_users: no
-#     base: ""
-#     user_filter: ""
-#     # These settings are only available when `gitlab_distribution` is set to
-#     # the value `enterprise`.
-#     # group_base: ""
-#     # admin_group: ""
-#     # sync_ssh_keys: no
-#   - name: secondary
-#     label: LDAP
-#     host: _your_ldap_server
-#     port: 389
-#     uid: sAMAccountName
-#     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
-#     password: _the_password_of_the_bind_user
-#     encryption: plain
-#     verify_certificates: yes
-#     smartcard_auth: yes
-#     active_directory: yes
-#     allow_username_or_email_login: no
-#     lowercase_usernames: no
-#     block_auto_created_users: no
-#     base: ""
-#     user_filter: ""
-#     # These settings are only available when `gitlab_distribution` is set to
-#     # the value `enterprise`.
-#     # group_base: ""
-#     # admin_group: ""
-#     # sync_ssh_keys: no
+gitlab_rails_ldap_servers:
+  - name: main
+    label: LDAP
+    host: _your_ldap_server
+    port: 389
+    uid: sAMAccountName
+    bind_dn: _the_full_dn_of_the_user_you_will_bind_with
+    password: _the_password_of_the_bind_user
+    encryption: plain
+    verify_certificates: yes
+    smartcard_auth: yes
+    active_directory: yes
+    allow_username_or_email_login: no
+    lowercase_usernames: no
+    block_auto_created_users: no
+    base: ""
+    user_filter: ""
+    # These settings are only available when `gitlab_distribution` is set to
+    # the value `enterprise`.
+    # group_base: ""
+    # admin_group: ""
+    # sync_ssh_keys: no
+  - name: secondary
+    label: LDAP
+    host: _your_ldap_server
+    port: 389
+    uid: sAMAccountName
+    bind_dn: _the_full_dn_of_the_user_you_will_bind_with
+    password: _the_password_of_the_bind_user
+    encryption: plain
+    verify_certificates: yes
+    smartcard_auth: yes
+    active_directory: yes
+    allow_username_or_email_login: no
+    lowercase_usernames: no
+    block_auto_created_users: no
+    base: ""
+    user_filter: ""
+    # These settings are only available when `gitlab_distribution` is set to
+    # the value `enterprise`.
+    # group_base: ""
+    # admin_group: ""
+    # sync_ssh_keys: no
 
 # Backup settings.
 gitlab_rails_manage_backup_path: yes
