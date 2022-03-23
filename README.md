@@ -2,9 +2,9 @@
 
 Install and configure GitLab on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-gitlab/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|
+|GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
+|------|------|-------|---------|-------|------|-------------|
+|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-gitlab/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -21,7 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
-        - isrgrootx1.pem # A root certificate for letsencrypt.
+        - isrgrootx1.pem   # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -106,49 +106,49 @@ gitlab_rails_ldap_enabled: no
 gitlab_rails_prevent_ldap_sign_in: no
 # When `gitlab_rails_ldap_enabled` is set to `yes`, you need to define (at
 # least on) `gitlab_rails_ldap_servers`.
-# gitlab_rails_ldap_servers:
-#   - name: main
-#     label: LDAP
-#     host: _your_ldap_server
-#     port: 389
-#     uid: sAMAccountName
-#     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
-#     password: _the_password_of_the_bind_user
-#     encryption: plain
-#     verify_certificates: yes
-#     smartcard_auth: yes
-#     active_directory: yes
-#     allow_username_or_email_login: no
-#     lowercase_usernames: no
-#     block_auto_created_users: no
-#     base: ""
-#     user_filter: ""
-#     # These settings are only available when `gitlab_distribution` is set to
-#     # the value `enterprise`.
-#     # group_base: ""
-#     # admin_group: ""
-#     # sync_ssh_keys: no
-#   - name: secondary
-#     label: LDAP
-#     host: _your_ldap_server
-#     port: 389
-#     uid: sAMAccountName
-#     bind_dn: _the_full_dn_of_the_user_you_will_bind_with
-#     password: _the_password_of_the_bind_user
-#     encryption: plain
-#     verify_certificates: yes
-#     smartcard_auth: yes
-#     active_directory: yes
-#     allow_username_or_email_login: no
-#     lowercase_usernames: no
-#     block_auto_created_users: no
-#     base: ""
-#     user_filter: ""
-#     # These settings are only available when `gitlab_distribution` is set to
-#     # the value `enterprise`.
-#     # group_base: ""
-#     # admin_group: ""
-#     # sync_ssh_keys: no
+gitlab_rails_ldap_servers:
+  - name: main
+    label: LDAP
+    host: _your_ldap_server
+    port: 389
+    uid: sAMAccountName
+    bind_dn: _the_full_dn_of_the_user_you_will_bind_with
+    password: _the_password_of_the_bind_user
+    encryption: plain
+    verify_certificates: yes
+    smartcard_auth: yes
+    active_directory: yes
+    allow_username_or_email_login: no
+    lowercase_usernames: no
+    block_auto_created_users: no
+    base: ""
+    user_filter: ""
+    # These settings are only available when `gitlab_distribution` is set to
+    # the value `enterprise`.
+    # group_base: ""
+    # admin_group: ""
+    # sync_ssh_keys: no
+  - name: secondary
+    label: LDAP
+    host: _your_ldap_server
+    port: 389
+    uid: sAMAccountName
+    bind_dn: _the_full_dn_of_the_user_you_will_bind_with
+    password: _the_password_of_the_bind_user
+    encryption: plain
+    verify_certificates: yes
+    smartcard_auth: yes
+    active_directory: yes
+    allow_username_or_email_login: no
+    lowercase_usernames: no
+    block_auto_created_users: no
+    base: ""
+    user_filter: ""
+    # These settings are only available when `gitlab_distribution` is set to
+    # the value `enterprise`.
+    # group_base: ""
+    # admin_group: ""
+    # sync_ssh_keys: no
 
 # Backup settings.
 gitlab_rails_manage_backup_path: yes
@@ -164,6 +164,21 @@ gitlab_rails_backup_keep_time: 604800
 #   region: eu-west-1
 #   aws_access_key_id: AKIAKIAKI
 #   aws_secret_access_key: secret123
+#   use_iam_profile: false
+#   endpoint: https://ams3.digitaloceanspaces.com
+# gitlab_rails_backup_upload_remote_directory: my.s3.bucket
+# gitlab_rails_backup_multipart_chunk_size: 104857600
+# gitlab_rails_backup_encryption: AES256
+# gitlab_rails_backup_encryption_key: "base64-encoded encryption key"
+# gitlab_rails_backup_upload_storage_options:
+#   server_side_encryption: "aws:kms"
+#   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
+# gitlab_rails_backup_storage_class: STANDARD
+# gitlab_rails_backup_upload_connection:
+#   provider: AWS
+#   region: eu-west-1
+#   aws_access_key_id: AKIAKIAKI
+#   aws_secret_access_key: secret123
 #   use_iam_profile: no
 # gitlab_rails_backup_upload_remote_directory: my.s3.bucket
 # gitlab_rails_backup_multipart_chunk_size: 104857600
@@ -173,6 +188,7 @@ gitlab_rails_backup_keep_time: 604800
 #   server_side_encryption: "aws:kms"
 #   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
 # gitlab_rails_backup_storage_class: STANDARD
+>>>>>>> parent of 457174a (resolves #16)
 
 # You can skip parts in a backup.
 # gitlab_rails_env:
@@ -365,8 +381,8 @@ gitlab_letsencrypt_owner: root
 gitlab_letsencrypt_wwwroot: /var/opt/gitlab/nginx/www
 gitlab_letsencrypt_auto_renew: yes
 gitlab_letsencrypt_auto_renew_hour: 0
-gitlab_letsencrypt_auto_renew_minute: nil
-gitlab_letsencrypt_auto_renew_day_of_month: nil
+gitlab_letsencrypt_auto_renew_minute: 3
+gitlab_letsencrypt_auto_renew_day_of_month: 3
 gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
 
 # In case you need to trust a (CA) certificate to access remote resources,
@@ -387,7 +403,7 @@ The following roles are used to prepare a system. You can prepare your system in
 
 | Requirement | GitHub | GitLab |
 |-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/buluma.bootstrap)|[![Build Status GitHub](https://github.com/buluma/buluma.bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/buluma.bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/buluma.bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/buluma.bootstrap)|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab ](https://gitlab.com/buluma/ansible-role-bootstrap/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-bootstrap)|
 
 ## [Context](#context)
 
