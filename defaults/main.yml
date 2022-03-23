@@ -121,7 +121,8 @@ gitlab_rails_backup_upload_connection:
   region: eu-west-1
   aws_access_key_id: AKIAKIAKI
   aws_secret_access_key: secret123
-  use_iam_profile: no
+  use_iam_profile: no,
+  endpoint: https://ams3.digitaloceanspaces.com
 gitlab_rails_backup_upload_remote_directory: my.s3.bucket
 gitlab_rails_backup_multipart_chunk_size: 104857600
 gitlab_rails_backup_encryption: AES256
