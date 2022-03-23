@@ -573,7 +573,8 @@ gitlab_rails['backup_upload_connection'] = {
   'aws_access_key_id' => '{{ gitlab_rails_backup_upload_connection.aws_access_key_id }}',
   'aws_secret_access_key' => '{{ gitlab_rails_backup_upload_connection.aws_secret_access_key }}',
   # # If IAM profile use is enabled, remove aws_access_key_id and aws_secret_access_key
-  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | string | lower }}
+  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | string | lower }},
+  'endpoint' => '{{ gitlab_rails_backup_upload_connection.endpoint }}',
 }
 {% endif %}
 
