@@ -2,9 +2,9 @@
 
 Install and configure GitLab on your system.
 
-|GitHub|GitLab|Quality|Downloads|Version|
-|------|------|-------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-gitlab/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|
+|GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
+|------|------|-------|---------|-------|------|-------------|
+|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-gitlab/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -159,20 +159,21 @@ gitlab_rails_backup_pg_schema: public
 gitlab_rails_backup_keep_time: 604800
 
 # You can save backups on AWS S3.
-# gitlab_rails_backup_upload_connection:
-#   provider: AWS
-#   region: eu-west-1
-#   aws_access_key_id: AKIAKIAKI
-#   aws_secret_access_key: secret123
-#   use_iam_profile: no
-# gitlab_rails_backup_upload_remote_directory: my.s3.bucket
-# gitlab_rails_backup_multipart_chunk_size: 104857600
-# gitlab_rails_backup_encryption: AES256
-# gitlab_rails_backup_encryption_key: "base64-encoded encryption key"
-# gitlab_rails_backup_upload_storage_options:
-#   server_side_encryption: "aws:kms"
-#   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
-# gitlab_rails_backup_storage_class: STANDARD
+gitlab_rails_backup_upload_connection:
+  provider: AWS
+  region: eu-west-1
+  aws_access_key_id: AKIAKIAKI
+  aws_secret_access_key: secret123
+  use_iam_profile: false
+  endpoint: https://ams3.digitaloceanspaces.com
+gitlab_rails_backup_upload_remote_directory: my.s3.bucket
+gitlab_rails_backup_multipart_chunk_size: 104857600
+gitlab_rails_backup_encryption: AES256
+gitlab_rails_backup_encryption_key: "base64-encoded encryption key"
+gitlab_rails_backup_upload_storage_options:
+  server_side_encryption: "aws:kms"
+  server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
+gitlab_rails_backup_storage_class: STANDARD
 
 # You can skip parts in a backup.
 # gitlab_rails_env:
