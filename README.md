@@ -21,7 +21,7 @@ This example is taken from `molecule/default/converge.yml` and is tested on each
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
-        - isrgrootx1.pem   # A root certificate for letsencrypt.
+        - isrgrootx1.pem  # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using `molecule/default/prepare.yml`:
@@ -102,7 +102,7 @@ gitlab_default_projects_features_builds: yes
 gitlab_default_projects_features_container_registry: yes
 
 # LDAP settings.
-gitlab_rails_ldap_enabled: no
+gitlab_rails_ldap_enabled: yes
 gitlab_rails_prevent_ldap_sign_in: no
 # When `gitlab_rails_ldap_enabled` is set to `yes`, you need to define (at
 # least on) `gitlab_rails_ldap_servers`.
@@ -188,7 +188,6 @@ gitlab_rails_backup_keep_time: 604800
 #   server_side_encryption: "aws:kms"
 #   server_side_encryption_kms_key_id: "arn:aws:kms:YOUR-KEY-ID-HERE"
 # gitlab_rails_backup_storage_class: STANDARD
->>>>>>> parent of 457174a (resolves #16)
 
 # You can skip parts in a backup.
 # gitlab_rails_env:
