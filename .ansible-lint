@@ -12,4 +12,5 @@ exclude_paths:
   - ./.cache
 
 skip_list:
-  - fqcn-builtins  # Use FQCN for builtin actions.
+  - fqcn-builtins
+  - no-changed-when
