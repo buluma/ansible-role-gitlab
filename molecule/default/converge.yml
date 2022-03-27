@@ -10,28 +10,23 @@
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
         - isrgrootx1.pem  # A root certificate for letsencrypt.
+  post_tasks:
+    # v2
+    - name: read initial_root_password file
+      slurp:
+        src: /etc/gitlab/initial_root_password
+      register: initial_root_password
+      when:
+        - gitlab_initial_root_password | bool
 
-  # post_tasks:
-  #   # - name: get initialAdminPassword
-  #   #   shell: cat /var/lib/jenkins/secrets/initialAdminPassword
-  #   #   register: adminpwd
-  #
-  #   # v2
-  #   - name: read initial_root_password file
-  #     slurp:
-  #       src: /etc/gitlab/initial_root_password
-  #     register: initial_root_password
-  #     when:
-  #       - gitlab_initial_root_password | bool
-  #
-  #   - name: Extract Password from variable initial_root_password
-  #     set_fact:
-  #       gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
-  #     when:
-  #       - gitlab_initial_root_password | bool
-  #
-  #   - name: Print gitlab password
-  #     debug:
-  #       var: gitlab_password
-  #     when:
-  #       - gitlab_initial_root_password | bool
+    - name: Extract Password from variable initial_root_password
+      set_fact:
+        gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
+      when:
+        - gitlab_initial_root_password | bool
+
+    - name: Print gitlab password
+      debug:
+        var: gitlab_password
+      when:
+        - gitlab_initial_root_password | bool
