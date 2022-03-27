@@ -24,6 +24,9 @@ gitlab_distribution: community
 # For "https", let's encrypt will be used.
 gitlab_external_url: "http://localhost"
 
+# Extract Password from variable initial_root_password
+gitlab_initial_root_password: false
+
 # Set the preferred timezone.
 gitlab_rails_time_zone: UTC
 
