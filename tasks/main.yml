@@ -138,10 +138,6 @@
     - gitlab_configuration_file is defined
 
 # v2
-- name: Retrieve the list of etc/gitlab directories
-  ansible.builtin.command: ls /etc/gitlab
-  register: gitlab_dirs
-
 - name: read initial_root_password file
   slurp:
     src: /etc/gitlab/initial_root_password
