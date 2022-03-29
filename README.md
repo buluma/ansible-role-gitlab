@@ -4,7 +4,7 @@ Install and configure GitLab on your system.
 
 |GitHub|GitLab|Quality|Downloads|Version|Issues|Pull Requests|
 |------|------|-------|---------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-gitlab/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|
+|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/buluma/ansible-role-gitlab/badges/main/pipeline.svg)](https://gitlab.com/buluma/ansible-role-gitlab)|[![quality](https://img.shields.io/ansible/quality/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![downloads](https://img.shields.io/ansible/role/d/57906)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -66,6 +66,9 @@ gitlab_distribution: community
 # The URL where the gitlab installation will be made available on.
 # For "https", let's encrypt will be used.
 gitlab_external_url: "http://localhost"
+
+# Extract Password from variable initial_root_password
+gitlab_initial_root_password: false
 
 # Set the preferred timezone.
 gitlab_rails_time_zone: UTC
@@ -418,6 +421,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
+|amazon|Candidate|
 |el|7, 8|
 |ubuntu|focal|
 
