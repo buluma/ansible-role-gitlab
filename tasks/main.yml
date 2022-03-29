@@ -51,6 +51,8 @@
 - name: install gitlab
   ansible.builtin.package:
     name: "{{ gitlab_package }}"
+    async: "{{ gitlab_install_timeout }}"
+    poll: 5
 
 - name: configure ssl
   block:
