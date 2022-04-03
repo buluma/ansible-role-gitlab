@@ -44,3 +44,7 @@
     - name: Extract Password from variable initial_root_password
       ansible.builtin.set_fact:
         gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
+
+    - name: Print gitlab password
+      ansible.builtin.debug:
+        var: gitlab_password
