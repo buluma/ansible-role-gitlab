@@ -104,7 +104,7 @@
 - name: place trusted-certs
   block:
     - name: make trusted-certs directories
-      file:
+      ansible.builtin.file:
         path: /etc/gitlab/trusted-certs
         state: directory
         owner: root
@@ -138,20 +138,20 @@
     - gitlab_configuration_file is defined
 
 - name: read initial_root_password file
-  slurp:
+  ansible.builtin.slurp:
     src: /etc/gitlab/initial_root_password
   register: initial_root_password
   when:
     - gitlab_initial_root_password | bool
 
 - name: Extract Password from variable initial_root_password
-  set_fact:
+  ansible.builtin.set_fact:
     gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
   when:
     - gitlab_initial_root_password | bool
 
 - name: Print gitlab password
-  debug:
+  ansible.builtin.debug:
     var: gitlab_password
   when:
     - gitlab_initial_root_password | bool

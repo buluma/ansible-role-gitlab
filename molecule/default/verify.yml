@@ -35,3 +35,12 @@
       ansible.builtin.shell:
         cmd: ls -lh
         chdir: /etc/gitlab/
+
+    - name: read initial_root_password file
+      ansible.builtin.slurp:
+        src: /etc/gitlab/initial_root_password
+      register: initial_root_password
+
+    - name: Extract Password from variable initial_root_password
+      ansible.builtin.set_fact:
+        gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
