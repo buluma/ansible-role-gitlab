@@ -20,6 +20,12 @@ molecule:
         tag: "latest"
       - image: "docker-ubuntu-systemd"
         tag: "focal"
+      - image: "ubuntu"
+        tag: "20.04"
+      - image: "ubuntu"
+        tag: "18.04"
+      - image: "ubuntu"
+        tag: "21.04"
 
 testing:
   script:
