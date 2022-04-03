@@ -48,6 +48,23 @@
   when:
     - ansible_pkg_mgr in [ "dnf", "yum" ]
 
+# Install GitLab and its dependencies.
+- name: Install GitLab dependencies.
+  package:
+    name:
+      - openssh-server
+      - postfix
+      - curl
+      - openssl
+      - tzdata
+    state: present
+
+- name: Install GitLab dependencies (Debian).
+  apt:
+    name: gnupg2
+    state: present
+  when: ansible_os_family == 'Debian'
+
 - name: install gitlab
   ansible.builtin.package:
     name: "{{ gitlab_package }}"
@@ -136,22 +153,3 @@
     - run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
-
-- name: read initial_root_password file
-  slurp:
-    src: /etc/gitlab/initial_root_password
-  register: initial_root_password
-  when:
-    - gitlab_initial_root_password | bool
-
-- name: Extract Password from variable initial_root_password
-  set_fact:
-    gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
-  when:
-    - gitlab_initial_root_password | bool
-
-- name: Print gitlab password
-  debug:
-    var: gitlab_password
-  when:
-    - gitlab_initial_root_password | bool
