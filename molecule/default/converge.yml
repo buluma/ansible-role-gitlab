@@ -3,30 +3,13 @@
   hosts: all
   become: yes
   gather_facts: yes
+  vars:
+    - gitlab_initial_root_password: true
 
   roles:
     - role: ansible-role-gitlab
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
+      gitlab_external_url: "http://127.0.0.1"
       gitlab_trusted_certs:
         - isrgrootx1.pem  # A root certificate for letsencrypt.
-  post_tasks:
-    # v2
-    - name: read initial_root_password file
-      slurp:
-        src: /etc/gitlab/initial_root_password
-      register: initial_root_password
-      when:
-        - gitlab_initial_root_password | bool
-
-    - name: Extract Password from variable initial_root_password
-      set_fact:
-        gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
-      when:
-        - gitlab_initial_root_password | bool
-
-    - name: Print gitlab password
-      debug:
-        var: gitlab_password
-      when:
-        - gitlab_initial_root_password | bool

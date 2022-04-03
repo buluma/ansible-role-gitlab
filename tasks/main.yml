@@ -104,7 +104,7 @@
 - name: place trusted-certs
   block:
     - name: make trusted-certs directories
-      file:
+      ansible.builtin.file:
         path: /etc/gitlab/trusted-certs
         state: directory
         owner: root

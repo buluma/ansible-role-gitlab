@@ -20,4 +20,26 @@
 
     - name: see if web interface can be used
       ansible.builtin.uri:
-        url: http://localhost/users/sign_in
+        url: http://127.0.0.1/users/sign_in
+
+    - name: get stats of the initial_root_password object
+      ansible.builtin.stat:
+        path: /etc/gitlab/initial_root_password
+      register: p
+    - name: print a debug message
+      ansible.builtin.debug:
+        msg: "Path exists and is a file"
+      when: p.stat.isdir is defined and p.stat.isdir
+
+    - name: read initial_root_password file
+      ansible.builtin.slurp:
+        src: /etc/gitlab/initial_root_password
+      register: initial_root_password
+
+    - name: Extract Password from variable initial_root_password
+      ansible.builtin.set_fact:
+        gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
+
+    - name: Print gitlab password
+      ansible.builtin.debug:
+        var: gitlab_password

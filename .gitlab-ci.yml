@@ -10,7 +10,7 @@ variables:
 
 molecule:
   script:
-    - image=${image} tag=${tag} molecule -v test
+    - image=${image} tag=${tag} molecule test
   retry: 1
   parallel:
     matrix:
@@ -20,10 +20,14 @@ molecule:
         tag: "latest"
       - image: "docker-ubuntu-systemd"
         tag: "focal"
+      - image: "ubuntu"
+        tag: "20.04"
+      - image: "ubuntu"
+        tag: "18.04"
 
 testing:
   script:
-    - image=${image} tag=${tag} molecule -v test
+    - image=${image} tag=${tag} molecule test
   rules:
     - if: $CI_COMMIT_REF_NAME == "testing"
   retry: 1
