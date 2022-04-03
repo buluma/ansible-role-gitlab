@@ -35,17 +35,11 @@
       ansible.builtin.slurp:
         src: /etc/gitlab/initial_root_password
       register: initial_root_password
-      when:
-        - gitlab_initial_root_password | bool
 
     - name: Extract Password from variable initial_root_password
       ansible.builtin.set_fact:
         gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
-      when:
-        - gitlab_initial_root_password | bool
 
     - name: Print gitlab password
       ansible.builtin.debug:
         var: gitlab_password
-      when:
-        - gitlab_initial_root_password | bool
