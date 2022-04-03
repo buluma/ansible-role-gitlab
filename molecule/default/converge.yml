@@ -3,10 +3,11 @@
   hosts: all
   become: yes
   gather_facts: yes
+  vars:
+    - gitlab_initial_root_password: true
 
   roles:
     - role: ansible-role-gitlab
-      gitlab_initial_root_password: true
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
       gitlab_trusted_certs:
