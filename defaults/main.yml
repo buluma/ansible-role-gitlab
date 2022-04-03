@@ -23,7 +23,7 @@ gitlab_distribution: community
 
 # The URL where the gitlab installation will be made available on.
 # For "https", let's encrypt will be used.
-gitlab_external_url: "http://localhost"
+gitlab_external_url: "http://127.0.0.1"
 
 # Extract Password from variable initial_root_password
 gitlab_initial_root_password: true
