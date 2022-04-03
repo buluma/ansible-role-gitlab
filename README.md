@@ -68,7 +68,7 @@ gitlab_distribution: community
 gitlab_external_url: "http://localhost"
 
 # Extract Password from variable initial_root_password
-gitlab_initial_root_password: false
+gitlab_initial_root_password: true
 
 # Set the preferred timezone.
 gitlab_rails_time_zone: UTC
