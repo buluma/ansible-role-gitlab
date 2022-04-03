@@ -21,3 +21,12 @@
     - name: see if web interface can be used
       ansible.builtin.uri:
         url: http://127.0.0.1/users/sign_in
+
+    - name: Get stats of the initial_root_password object
+      ansible.builtin.stat:
+        path: /etc/gitlab/initial_root_password
+      register: p
+    - name: Print a debug message
+      ansible.builtin.debug:
+        msg: "Path exists and is a file"
+      when: p.stat.isdir is defined and p.stat.isdir
