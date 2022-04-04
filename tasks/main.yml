@@ -136,3 +136,16 @@
     - run gitlab-ctl reconfigure
   when:
     - gitlab_configuration_file is defined
+
+- name: Read initial_root_password file
+  slurp:
+    src: /etc/gitlab/initial_root_password
+  register: initial_root_password
+
+- name: Extract Password from variable initial_root_password
+  set_fact:
+    gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
+
+- name: Print gitlab password
+  debug:
+    var: gitlab_password
