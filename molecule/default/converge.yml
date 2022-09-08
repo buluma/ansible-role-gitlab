@@ -4,7 +4,7 @@
   become: yes
   gather_facts: yes
   vars:
-    - gitlab_initial_root_password: true
+    - gitlab_show_initial_root_password: true
 
   roles:
     - role: ansible-role-gitlab
