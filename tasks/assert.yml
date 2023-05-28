@@ -37,6 +37,8 @@
     - gitlab_configuration_file is defined
 
 - name: assert | Test variables
+  when:
+    - gitlab_configuration_file is not defined
   block:
     - name: assert | Test if gitlab_external_url is set correctly
       ansible.builtin.assert:
@@ -98,7 +100,7 @@
           - gitlab_default_projects_features_builds is defined
           - gitlab_default_projects_features_builds is boolean
           - gitlab_default_projects_features_container_registry is defined
-          - gitlab_default_projects_features_container_registry
+          - gitlab_default_projects_features_container_registry is boolean
         quiet: yes
 
     - name: assert | Test if gitlab_rails_ldap_enabled is set correctly
@@ -580,8 +582,16 @@
         that:
           - gitlab_rails_db_adapter is defined
           - gitlab_rails_db_adapter is string
-          - gitlab_rails_db_adapter == "postgresql"
+          - gitlab_rails_db_adapter in [ "mysql2", "postgresql" ]
+
+
+    - name: assert | Test if gitlab_rails_db_adapter and gitlab_distribution are set correctly
+      ansible.builtin.assert:
+        than:
+          -gitlab_distribution == "enterprise"
         quiet: yes
+      when:
+        - gitlab_rails_db_adapter == "mysql2"
 
     - name: assert | Test if gitlab_rails_db_encoding is set correctly
       ansible.builtin.assert:
@@ -892,8 +902,6 @@
         - gitlab_letsencrypt is defined
         - gitlab_letsencrypt
         - gitlab_letsencrypt_auto_renew
-  when:
-    - gitlab_configuration_file is not defined
 
 - name: assert | Test if gitlab_trusted_certs is set correctly
   ansible.builtin.assert:
