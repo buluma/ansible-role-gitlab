@@ -15,7 +15,9 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - all
-
+    - name: Kali
+      versions:
+        - all
   galaxy_tags:
     - gitlab
 
