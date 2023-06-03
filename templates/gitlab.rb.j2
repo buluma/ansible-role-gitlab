@@ -573,8 +573,8 @@ gitlab_rails['backup_upload_connection'] = {
   'aws_access_key_id' => '{{ gitlab_rails_backup_upload_connection.aws_access_key_id }}',
   'aws_secret_access_key' => '{{ gitlab_rails_backup_upload_connection.aws_secret_access_key }}',
   # # If IAM profile use is enabled, remove aws_access_key_id and aws_secret_access_key
-  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | string | lower }},
   {% if gitlab_rails_backup_upload_connection.endpoint is defined %}'endpoint' => '{{ gitlab_rails_backup_upload_connection.endpoint }}',{% endif %}
+  'use_iam_profile' => {{ gitlab_rails_backup_upload_connection.use_iam_profile | string | lower }}
 }
 {% endif %}
 
@@ -691,14 +691,14 @@ gitlab_rails['env'] = {
 #### Change the initial default admin password and shared runner registration tokens.
 ####! **Only applicable on initial setup, changing these settings after database
 ####!   is created and seeded won't yield any change.**
-gitlab_rails['initial_root_password'] = "password"
+# gitlab_rails['initial_root_password'] = "password"
 # gitlab_rails['initial_shared_runners_registration_token'] = "token"
 
 #### Toggle if root password should be printed to STDOUT during initialization
-gitlab_rails['display_initial_root_password'] = true
+# gitlab_rails['display_initial_root_password'] = false
 
 #### Toggle if initial root password should be written to /etc/gitlab/initial_root_password
-gitlab_rails['store_initial_root_password'] = true
+# gitlab_rails['store_initial_root_password'] = true
 
 #### Set path to an initial license to be used while bootstrapping GitLab.
 ####! **Only applicable on initial setup, future license updations need to be done via UI.

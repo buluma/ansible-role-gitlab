@@ -32,7 +32,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 
 ```yaml
 ---
-- name: prepare
+- name: Prepare
   hosts: all
   become: yes
   gather_facts: no
@@ -55,7 +55,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Please have a look at this repository for available package version:
 # community: "https://packages.gitlab.com/gitlab/gitlab-ce"
 # enterprise: "https://packages.gitlab.com/gitlab/gitlab-ee"
-gitlab_version: "14.9.2"
+gitlab_version: "15.11.6"
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
