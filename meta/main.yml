@@ -14,10 +14,8 @@ galaxy_info:
         - all
     - name: Ubuntu
       versions:
-        - all
-    - name: Kali
-      versions:
-        - all
+        - focal
+        - bionic
   galaxy_tags:
     - gitlab
 
