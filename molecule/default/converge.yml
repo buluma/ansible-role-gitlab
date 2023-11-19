@@ -1,15 +1,12 @@
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
-  vars:
-    - gitlab_show_initial_root_password: false
 
   roles:
     - role: ansible-role-gitlab
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
-      gitlab_external_url: "http://127.0.0.1"
       gitlab_trusted_certs:
         - isrgrootx1.pem  # A root certificate for letsencrypt.

@@ -5,7 +5,7 @@
   gather_facts: no
 
   tasks:
-    - name: check gitlab-runsvdir service
+    - name: Check gitlab-runsvdir service
       ansible.builtin.service:
         name: gitlab-runsvdir
       check_mode: yes
@@ -13,25 +13,25 @@
       failed_when:
         - gitlab_service_check is changed
 
-    - name: check gitlab status
+    - name: Check gitlab status
       ansible.builtin.command:
         cmd: gitlab-ctl status
       changed_when: no
 
-    - name: see if web interface can be used
+    - name: See if web interface can be used
       ansible.builtin.uri:
         url: http://127.0.0.1/users/sign_in
 
-    - name: get stats of the initial_root_password object
+    - name: Get stats of the initial_root_password object
       ansible.builtin.stat:
         path: /etc/gitlab/initial_root_password
       register: p
-    - name: print a debug message
+    - name: Print a debug message
       ansible.builtin.debug:
         msg: "Path exists and is a file"
       when: p.stat.isdir is defined and p.stat.isdir
 
-    - name: read initial_root_password file
+    - name: Read initial_root_password file
       ansible.builtin.slurp:
         src: /etc/gitlab/initial_root_password
       register: initial_root_password
