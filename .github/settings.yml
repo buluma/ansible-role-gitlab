@@ -5,4 +5,4 @@
 repository:
   description: Install and configure GitLab on your system.
   homepage: https://buluma.github.io/
-  topics: gitlab, ansible, molecule, tox, playbook
+  topics: gitlab, development, ansible, molecule, tox, playbook

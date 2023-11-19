@@ -12,18 +12,15 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: converge
+- name: Converge
   hosts: all
   become: yes
   gather_facts: yes
-  vars:
-    - gitlab_show_initial_root_password: false
 
   roles:
     - role: buluma.gitlab
       gitlab_letsencrypt: no
       gitlab_cleanup_ruby: no
-      gitlab_external_url: "http://127.0.0.1"
       gitlab_trusted_certs:
         - isrgrootx1.pem  # A root certificate for letsencrypt.
 ```
@@ -55,7 +52,7 @@ The default values for the variables are set in [`defaults/main.yml`](https://gi
 # Please have a look at this repository for available package version:
 # community: "https://packages.gitlab.com/gitlab/gitlab-ce"
 # enterprise: "https://packages.gitlab.com/gitlab/gitlab-ee"
-gitlab_version: "15.5.1"
+gitlab_version: "16.0.3"
 
 # A part of the version is the "release", mostly "0". See repositories above.
 gitlab_release: 0
@@ -427,7 +424,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 |container|tags|
 |---------|----|
 |[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|all|
-|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|focal, bionic|
+|[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
 
@@ -447,7 +444,7 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 ## [Author Information](#author-information)
 
-[Michael Buluma](https://buluma.github.io/)
+[buluma](https://buluma.github.io/)
 
 Please consider [sponsoring me](https://github.com/sponsors/buluma).
 
