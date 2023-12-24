@@ -1,10 +1,10 @@
-# [Ansible role gitlab](#gitlab)
+# Ansible role [gitlab](https://galaxy.ansible.com/ui/standalone/roles/buluma/gitlab/documentation)
 
 Install and configure GitLab on your system.
 
-|GitHub|Version|Issues|Pull Requests|
-|------|-------|------|-------------|
-|[![github](https://github.com/buluma/ansible-role-gitlab/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|
+|GitHub|Version|Issues|Pull Requests|Downloads|
+|------|-------|------|-------------|---------|
+|[![github](https://github.com/buluma/ansible-role-gitlab/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions/workflows/molecule.yml)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/gitlab)](https://galaxy.ansible.com/ui/standalone/roles/buluma/gitlab/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -440,13 +440,11 @@ If you find issues, please register them in [GitHub](https://github.com/buluma/a
 
 ## [License](#license)
 
-[Apache-2.0](https://github.com/buluma/ansible-role-gitlab/blob/master/LICENSE).
+[Apache-2.0](https://github.com/buluma/ansible-role-gitlab/blob/master/LICENSE)
 
 ## [Author Information](#author-information)
 
-[buluma](https://buluma.github.io/)
+[Shadow Walker](https://buluma.github.io/)
 
-
-### [Special Thanks](#special-thanks)
 
 Template inspired by [Robert de Bock](https://github.com/robertdebock)
