@@ -87,7 +87,7 @@ gitlab_cleanup_ruby: yes
 # migrations to finish. This value is in minutes.
 gitlab_database_migrations_retries: 300
 
-# You can install all roles but not specifying any role, or select a few roles.
+# You can install all roles by not specifying any role, or select a few roles.
 # gitlab_roles:
 #   - redis_sentinel_role
 #   - redis_master_role
@@ -210,7 +210,7 @@ gitlab_rails_smtp_enable_starttls_auto: yes
 gitlab_rails_smtp_tls: no
 gitlab_rails_smtp_pool: no
 gitlab_rails_smtp_openssl_verify_mode: none
-gitlab_rails_smtp_ca_path: etc/ssl/certs
+gitlab_rails_smtp_ca_path: /etc/ssl/certs
 gitlab_rails_smtp_ca_file: /etc/ssl/certs/ca-certificates.crt
 
 # E-mail settings.
@@ -368,7 +368,7 @@ gitlab_rails_db_statements_limit: 1000
 
 # SSL settings
 # # If you do not want to use SSL, use this structure.
-gitlab_letsencrypt: yes
+# gitlab_letsencrypt: no
 # gitlab_external_url: "http://gitlab.example.com" # (No `https` in the value.)
 # # If you bring your own certificates, use this structure.
 # gitlab_letsencrypt: no
@@ -378,7 +378,9 @@ gitlab_letsencrypt: yes
 # # If you'd like to use letsencrypt, use this scructure.
 # gitlab_letsencrypt: yes
 # gitlab_letsencrypt_contact_emails:
-#   - bulumaknight@gmail.com
+#   - robert@meinit.nl
+# gitlab_acme_staging_endpoint: https://ca.internal/acme/acme/directory
+# gitlab_acme_production_endpoint: https://ca.internal/acme/acme/directory
 # gitlab_letsencrypt_group: root
 # gitlab_letsencrypt_key_size: 2048
 # gitlab_letsencrypt_owner: root
@@ -387,7 +389,7 @@ gitlab_letsencrypt: yes
 # gitlab_letsencrypt_auto_renew_hour: 0
 # gitlab_letsencrypt_auto_renew_minute: nil
 # gitlab_letsencrypt_auto_renew_day_of_month: nil
-# gitlab_letsencrypy_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
+# gitlab_letsencrypt_auto_renew_log_directory: /var/log/gitlab/lets-encrypt
 
 # In case you need to trust a (CA) certificate to access remote resources,
 # like an LDAP server, download the (CA) certificate, place it in the `files`
@@ -423,7 +425,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/b
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|all|
+|[EL](https://hub.docker.com/repository/docker/buluma/enterpriselinux/general)|8, 9|
 |[Ubuntu](https://hub.docker.com/repository/docker/buluma/ubuntu/general)|focal|
 
 The minimum version of Ansible required is 2.12, tests have been done to:
