@@ -50,7 +50,7 @@ jobs:
             tag: "8"
           - image: "enterpriselinux"
             tag: "latest"
-          - image: "docker-ubuntu-systemd"
+          - image: "docker-molecule-images"
             tag: "focal"
     steps:
       - name: Checkout Role
@@ -62,6 +62,8 @@ jobs:
         with:
           image: ${{ matrix.config.image }}
           tag: ${{ matrix.config.tag }}
+      - name: Running Role Test
+        run: ansible-galaxy role import --api-key ${{ secrets.galaxy_api_key }} buluma ${{ github.event.repository.name }}
 
   dependabot:
     needs:
