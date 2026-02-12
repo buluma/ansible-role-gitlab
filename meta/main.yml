@@ -1,23 +1,18 @@
----
 galaxy_info:
   author: buluma
   role_name: gitlab
   description: Install and configure GitLab on your system.
   license: Apache-2.0
   company: ShadowNet
-  min_ansible_version: "2.12"
-
+  min_ansible_version: '2.12'
   platforms:
-    - name: EL
-      versions:
-        - "8"
-        - "9"
-    - name: Ubuntu
-      versions:
-        - focal
-
+  - name: EL
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
   galaxy_tags:
-    - gitlab
-    - development
-
+  - gitlab
+  - development
 dependencies: []
