@@ -10,7 +10,7 @@
       when: ansible_os_family == 'Debian'
 
   roles:
-    - role: ansible-role-gitlab
+    - role: buluma.gitlab
       gitlab_letsencrypt: false
       gitlab_cleanup_ruby: false
       gitlab_trusted_certs:
