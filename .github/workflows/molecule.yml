@@ -45,7 +45,9 @@ jobs:
           - image: "enterpriselinux"
             tag: "latest"
           - image: "docker-molecule-images"
-            tag: "latest"
+            tag: "plucky"
+          - image: "docker-molecule-images"
+            tag: "ubuntu_latest"
           - image: "docker-molecule-images"
             tag: "jammy"
     steps:

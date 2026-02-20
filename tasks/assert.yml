@@ -1,5 +1,4 @@
 ---
-
 - name: assert | Test gitlab_version
   ansible.builtin.assert:
     that:
@@ -76,7 +75,8 @@
     - name: assert | Test item in gitlab_roles
       ansible.builtin.assert:
         that:
-          - item in [ "redis_sentinel_role", "redis_master_role", "redis_replica_role", "geo_primary_role", "geo_secondary_role", "postgres_role", "consul_role", "application_role", "monitoring_role" ]
+          - item in [ "redis_sentinel_role", "redis_master_role", "redis_replica_role", "geo_primary_role", "geo_secondary_role", "postgres_role",
+            "consul_role", "application_role", "monitoring_role" ]
         quiet: true
       loop: "{{ gitlab_roles }}"
       when:
@@ -908,11 +908,8 @@
       ansible.builtin.assert:
         that:
           - gitlab_letsencrypt_auto_renew_hour is defined
-          - (gitlab_letsencrypt_auto_renew_hour is number and
-             gitlab_letsencrypt_auto_renew_hour >= 0 and
-             gitlab_letsencrypt_auto_renew_hour <= 24) or
-            (gitlab_letsencrypt_auto_renew_hour is string and
-             gitlab_letsencrypt_auto_renew_hour is not none)
+          - (gitlab_letsencrypt_auto_renew_hour is number and gitlab_letsencrypt_auto_renew_hour >= 0 and gitlab_letsencrypt_auto_renew_hour <= 24) or
+            (gitlab_letsencrypt_auto_renew_hour is string and gitlab_letsencrypt_auto_renew_hour is not none)
         quiet: true
       when:
         - gitlab_letsencrypt is defined
@@ -923,11 +920,8 @@
       ansible.builtin.assert:
         that:
           - gitlab_letsencrypt_auto_renew_minute is defined
-          - (gitlab_letsencrypt_auto_renew_minute is number and
-             gitlab_letsencrypt_auto_renew_minute >= 0 and
-             gitlab_letsencrypt_auto_renew_minute <= 59) or
-            (gitlab_letsencrypt_auto_renew_minute is string and
-             gitlab_letsencrypt_auto_renew_minute is not none)
+          - (gitlab_letsencrypt_auto_renew_minute is number and gitlab_letsencrypt_auto_renew_minute >= 0 and gitlab_letsencrypt_auto_renew_minute <= 59) or
+            (gitlab_letsencrypt_auto_renew_minute is string and gitlab_letsencrypt_auto_renew_minute is not none)
         quiet: true
       when:
         - gitlab_letsencrypt is defined
@@ -938,11 +932,9 @@
       ansible.builtin.assert:
         that:
           - gitlab_letsencrypt_auto_renew_day_of_month is defined
-          - (gitlab_letsencrypt_auto_renew_day_of_month is number and
-             gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
-             gitlab_letsencrypt_auto_renew_day_of_month <= 31) or
-            (gitlab_letsencrypt_auto_renew_day_of_month is string and
-             gitlab_letsencrypt_auto_renew_day_of_month is not none)
+          - (gitlab_letsencrypt_auto_renew_day_of_month is number and gitlab_letsencrypt_auto_renew_day_of_month >= 0 and
+            gitlab_letsencrypt_auto_renew_day_of_month <= 31) or (gitlab_letsencrypt_auto_renew_day_of_month is string and
+            gitlab_letsencrypt_auto_renew_day_of_month is not none)
         quiet: true
       when:
         - gitlab_letsencrypt is defined
