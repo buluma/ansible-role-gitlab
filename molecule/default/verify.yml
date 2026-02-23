@@ -1,45 +1,46 @@
 ---
-- name: Verify
-  hosts: all
-  become: true
-  gather_facts: false
+  - name: Verify
+    hosts: all
+    become: true
+    gather_facts: false
 
-  tasks:
-    - name: Check gitlab-runsvdir service
-      ansible.builtin.service:
-        name: gitlab-runsvdir
-      check_mode: true
-      register: gitlab_service_check
-      failed_when:
-        - gitlab_service_check is changed
+    tasks:
+      - name: Check gitlab-runsvdir service
+        ansible.builtin.service:
+          name: gitlab-runsvdir
+        check_mode: true
+        register: gitlab_service_check
+        failed_when:
+          - gitlab_service_check is changed
 
-    - name: Check gitlab status
-      ansible.builtin.command:
-        cmd: gitlab-ctl status
-      changed_when: false
+      - name: Check gitlab status
+        ansible.builtin.command:
+          cmd: gitlab-ctl status
+        changed_when: false
 
-    - name: See if web interface can be used
-      ansible.builtin.uri:
-        url: http://127.0.0.1/users/sign_in
+      - name: See if web interface can be used
+        ansible.builtin.uri:
+          url: http://127.0.0.1/users/sign_in
 
-    - name: Get stats of the initial_root_password object
-      ansible.builtin.stat:
-        path: /etc/gitlab/initial_root_password
-      register: p
-    - name: Print a debug message
-      ansible.builtin.debug:
-        msg: "Path exists and is a file"
-      when: p.stat.isdir is defined and p.stat.isdir
+      - name: Get stats of the initial_root_password object
+        ansible.builtin.stat:
+          path: /etc/gitlab/initial_root_password
+        register: p
+      - name: Print a debug message
+        ansible.builtin.debug:
+          msg: "Path exists and is a file"
+        when: p.stat.isdir is defined and p.stat.isdir
 
-    - name: Read initial_root_password file
-      ansible.builtin.slurp:
-        src: /etc/gitlab/initial_root_password
-      register: initial_root_password
+      - name: Read initial_root_password file
+        ansible.builtin.slurp:
+          src: /etc/gitlab/initial_root_password
+        register: initial_root_password
 
-    - name: Extract Password from variable initial_root_password
-      ansible.builtin.set_fact:
-        gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password: (.+)', '\\1') | first }}"
+      - name: Extract Password from variable initial_root_password
+        ansible.builtin.set_fact:
+          gitlab_password: "{{ initial_root_password['content'] | b64decode | regex_search('Password:
+            (.+)', '\\1') | first }}"
 
-    - name: Print gitlab password
-      ansible.builtin.debug:
-        var: gitlab_password
+      - name: Print gitlab password
+        ansible.builtin.debug:
+          var: gitlab_password

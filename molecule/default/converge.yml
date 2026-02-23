@@ -1,17 +1,17 @@
 ---
-- name: Converge
-  hosts: all
-  become: true
-  gather_facts: true
+  - name: Converge
+    hosts: all
+    become: true
+    gather_facts: true
 
-  pre_tasks:
-    - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
-      when: ansible_os_family == 'Debian'
+    pre_tasks:
+      - name: Update apt cache.
+        apt: update_cache=true cache_valid_time=600
+        when: ansible_os_family == 'Debian'
 
-  roles:
-    - role: buluma.gitlab
-      gitlab_letsencrypt: false
-      gitlab_cleanup_ruby: false
-      gitlab_trusted_certs:
-        - isrgrootx1.pem  # A root certificate for letsencrypt.
+    roles:
+      - role: buluma.gitlab
+        gitlab_letsencrypt: false
+        gitlab_cleanup_ruby: false
+        gitlab_trusted_certs:
+          - isrgrootx1.pem # A root certificate for letsencrypt.

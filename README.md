@@ -12,35 +12,35 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
 ```yaml
 ---
-- name: Converge
-  hosts: all
-  become: true
-  gather_facts: true
+  - name: Converge
+    hosts: all
+    become: true
+    gather_facts: true
 
-  pre_tasks:
-    - name: Update apt cache.
-      apt: update_cache=true cache_valid_time=600
-      when: ansible_os_family == 'Debian'
+    pre_tasks:
+      - name: Update apt cache.
+        apt: update_cache=true cache_valid_time=600
+        when: ansible_os_family == 'Debian'
 
-  roles:
-    - role: buluma.gitlab
-      gitlab_letsencrypt: false
-      gitlab_cleanup_ruby: false
-      gitlab_trusted_certs:
-        - isrgrootx1.pem  # A root certificate for letsencrypt.
+    roles:
+      - role: buluma.gitlab
+        gitlab_letsencrypt: false
+        gitlab_cleanup_ruby: false
+        gitlab_trusted_certs:
+          - isrgrootx1.pem # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-gitlab/blob/master/molecule/default/prepare.yml):
 
 ```yaml
 ---
-- name: Prepare
-  hosts: all
-  become: true
-  gather_facts: false
+  - name: Prepare
+    hosts: all
+    become: true
+    gather_facts: false
 
-  roles:
-    - role: buluma.bootstrap
+    roles:
+      - role: buluma.bootstrap
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -227,7 +227,8 @@ gitlab_rails_gitlab_email_subject_suffix: ""
 gitlab_rails_gitlab_email_smime_enabled: false
 gitlab_rails_gitlab_email_smime_key_file: /etc/gitlab/ssl/gitlab_smime.key
 gitlab_rails_gitlab_email_smime_cert_file: /etc/gitlab/ssl/gitlab_smime.crt
-gitlab_rails_gitlab_email_smime_ca_certs_file: /etc/gitlab/ssl/gitlab_smime_cas.crt
+gitlab_rails_gitlab_email_smime_ca_certs_file: 
+  /etc/gitlab/ssl/gitlab_smime_cas.crt
 
 # User settings.
 # gitlab_rails['gitlab_default_can_create_group'] = true
