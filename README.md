@@ -227,8 +227,7 @@ gitlab_rails_gitlab_email_subject_suffix: ""
 gitlab_rails_gitlab_email_smime_enabled: false
 gitlab_rails_gitlab_email_smime_key_file: /etc/gitlab/ssl/gitlab_smime.key
 gitlab_rails_gitlab_email_smime_cert_file: /etc/gitlab/ssl/gitlab_smime.crt
-gitlab_rails_gitlab_email_smime_ca_certs_file: 
-  /etc/gitlab/ssl/gitlab_smime_cas.crt
+gitlab_rails_gitlab_email_smime_ca_certs_file: /etc/gitlab/ssl/gitlab_smime_cas.crt
 
 # User settings.
 # gitlab_rails['gitlab_default_can_create_group'] = true
