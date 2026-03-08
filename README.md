@@ -2,9 +2,9 @@
 
 Install and configure GitLab on your system.
 
-|GitHub|GitLab|Downloads|Version|
-|------|------|---------|-------|
-|[![github](https://github.com/buluma/ansible-role-gitlab/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions)|[![gitlab](https://gitlab.com/shadowwalker/ansible-role-gitlab/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-gitlab)|[![downloads](https://img.shields.io/ansible/role/d/buluma/gitlab)](https://galaxy.ansible.com/buluma/gitlab)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|
+|GitHub|Issues|Pull Requests|Version|Downloads|
+|------|------|-------------|-------|---------|
+|[![github](https://github.com/buluma/ansible-role-gitlab/actions/workflows/molecule.yml/badge.svg)](https://github.com/buluma/ansible-role-gitlab/actions/workflows/molecule.yml)|[![Issues](https://img.shields.io/github/issues/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/issues/)|[![PullRequests](https://img.shields.io/github/issues-pr-closed-raw/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/pulls/)|[![Version](https://img.shields.io/github/release/buluma/ansible-role-gitlab.svg)](https://github.com/buluma/ansible-role-gitlab/releases/)|[![Ansible Role](https://img.shields.io/ansible/role/d/buluma/gitlab)](https://galaxy.ansible.com/ui/standalone/roles/buluma/gitlab/documentation)|
 
 ## [Example Playbook](#example-playbook)
 
@@ -18,16 +18,16 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
   gather_facts: true
 
   pre_tasks:
-  - name: Update apt cache.
-    apt: update_cache=true cache_valid_time=600
-    when: ansible_os_family == 'Debian'
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
 
   roles:
-  - role: buluma.gitlab
-    gitlab_letsencrypt: false
-    gitlab_cleanup_ruby: false
-    gitlab_trusted_certs:
-    - isrgrootx1.pem       # A root certificate for letsencrypt.
+    - role: buluma.gitlab
+      gitlab_letsencrypt: false
+      gitlab_cleanup_ruby: false
+      gitlab_trusted_certs:
+        - isrgrootx1.pem # A root certificate for letsencrypt.
 ```
 
 The machine needs to be prepared. In CI this is done using [`molecule/default/prepare.yml`](https://github.com/buluma/ansible-role-gitlab/blob/master/molecule/default/prepare.yml):
@@ -40,7 +40,7 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
   gather_facts: false
 
   roles:
-  - role: buluma.bootstrap
+    - role: buluma.bootstrap
 ```
 
 Also see a [full explanation and example](https://buluma.github.io/how-to-use-these-roles.html) on how to use these roles.
@@ -412,25 +412,26 @@ gitlab_rails_db_statements_limit: 1000
 
 The following roles are used to prepare a system. You can prepare your system in another way.
 
-| Requirement | GitHub | GitLab |
-|-------------|--------|--------|
-|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|[![Build Status GitLab](https://gitlab.com/shadowwalker/ansible-role-bootstrap/badges/master/pipeline.svg)](https://gitlab.com/shadowwalker/ansible-role-bootstrap)|
+| Requirement | GitHub |
+|-------------|--------|
+|[buluma.bootstrap](https://galaxy.ansible.com/buluma/bootstrap)|[![Build Status GitHub](https://github.com/buluma/ansible-role-bootstrap/workflows/Ansible%20Molecule/badge.svg)](https://github.com/buluma/ansible-role-bootstrap/actions)|
 
 ## [Context](#context)
 
 This role is part of many compatible roles. Have a look at [the documentation of these roles](https://buluma.github.io/) for further information.
 
 Here is an overview of related roles:
+
 ![dependencies](https://raw.githubusercontent.com/buluma/ansible-role-gitlab/png/requirements.png "Dependencies")
 
 ## [Compatibility](#compatibility)
 
-This role has been tested on these [container images](https://hub.docker.com/u/buluma):
+This role has been tested on these [container images](https://hub.docker.com/u/robertdebock):
 
 |container|tags|
 |---------|----|
-|[EL](https://hub.docker.com/r/buluma/enterpriselinux)|all|
-|[Ubuntu](https://hub.docker.com/r/buluma/ubuntu)|all|
+|[EL](https://hub.docker.com/r/robertdebock/enterpriselinux)|all|
+|[Ubuntu](https://hub.docker.com/r/robertdebock/ubuntu)|all|
 
 The minimum version of Ansible required is 2.12, tests have been done on:
 
@@ -447,3 +448,4 @@ If you find issues, please register them on [GitHub](https://github.com/buluma/a
 ## [Author Information](#author-information)
 
 [buluma](https://buluma.github.io/)
+
