@@ -30,7 +30,7 @@
 
     - name: Install apt repository
       ansible.builtin.apt_repository:
-        repo: "deb {{ gitlab_repository_url }} {{ ansible_facts['distribution_release'] | lower }} main"
+        repo: "deb {{ gitlab_repository_url }} {{ gitlab_apt_codename }} main"
         filename: "{{ gitlab_repository_name }}"
 
 - name: Execute yum/dnf tasks
