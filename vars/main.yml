@@ -47,6 +47,7 @@ _gitlab_requirements:
   CentOS-7: *redhat_7_requirements
   CentOS-9: *redhat_9_requirements
   Rocky-9: *redhat_9_requirements
+  AlmaLinux-9: *redhat_9_requirements
   CentOS: *redhat_requirements
 gitlab_requirements: "{{ _gitlab_requirements[ansible_facts['distribution'] ~ '-' ~ ansible_facts['distribution_major_version']] | default(_gitlab_requirements[ansible_facts['distribution']]
   | default(_gitlab_requirements[ansible_facts['os_family']] )) }}"
@@ -63,6 +64,13 @@ _gitlab_repository_url:
 gitlab_repository_url: "{{ _gitlab_repository_url[ansible_facts['os_family']] }}"
 
 gitlab_repository_name: gitlab_gitlab-{{ gitlab_distribution_abbreviation }}
+
+# packages.gitlab.com lags behind new Ubuntu releases and has no dists/
+# entry for resolute (Ubuntu 26.04); falls back to the newest codename
+# it actually publishes.
+_gitlab_apt_codenames:
+  resolute: noble
+gitlab_apt_codename: "{{ _gitlab_apt_codenames[ansible_facts['distribution_release'] | lower] | default(ansible_facts['distribution_release'] | lower) }}"
 
 _gitlab_package_version_connector:
   Debian: "="
